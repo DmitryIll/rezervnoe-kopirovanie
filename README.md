@@ -20,6 +20,33 @@ rsync -a -c --delete --exclude='.*/' ~ /tmp/backup
 - На проверку направить файл crontab и скриншот с результатом работы утилиты.
 
 
+Подготовил скрипт:
+```
+rsync -a --delete --exclude='.*/' ~ /tmp/backup 2> errors.txt
+if [[ $? -eq 0 ]]; then
+    logger "Копирование прошло успешно"
+    exit 0
+else
+    err=$(cat errors.txt);
+    logger "Копирование прошло c ошибками: $err "
+    exit 1
+fi
+```
+
+crontab -l:
+
+```
+0 0 * * * \root\backup.sh
+```
+
+![Alt text](image-1.png)
+![Alt text](image-2.png)
+
+Внес ошибку в скрипт rsync и запустил:
+
+![Alt text](image-3.png)
+![Alt text](image-4.png)
+
 ---
 
 ## Задания со звёздочкой*
