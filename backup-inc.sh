@@ -32,3 +32,4 @@ OPTS="--force --ignore-errors --delete-excluded --exclude-from=$EXCLUDES --delet
 echo "rsync $OPTS $BDIR $BSERVER:$ROOTBACKUPDIR/$USER/current"
 rsync $OPTS $BDIR $BSERVER:$ROOTBACKUPDIR/$USER/current
 
+
